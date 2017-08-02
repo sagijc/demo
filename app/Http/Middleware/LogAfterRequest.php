@@ -1,21 +1,18 @@
 <?php
 
+namespace App\Http\Middleware;
+
 use Closure;
-use Illuminate\Contracts\Routing\TerminableMiddleware;
 use Illuminate\Support\Facades\Log;
 
-class LogAfterRequest implements TerminableMiddleware {
+class LogAfterRequest {
 
     public function handle($request, Closure $next)
     {
+        $_request = json_encode($request->getContent());
+        $_request = stripcslashes($_request);
+        Log::info($_request);
         return $next($request);
-    }
-
-    public function terminate($request, $response)
-    {
-        $logFile = 'log.txt';
-        Log::useDailyFiles(storage_path().'/logs/'.$logFile);
-        Log::info('app.requests', ['request' => $request->all(), 'response' => $response->getContent()]);
     }
 
 }

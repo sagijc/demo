@@ -21,8 +21,18 @@ class TasksController extends Controller
 
   public function store(Request $request) {
 
-    $_request = json_encode($request->getContent() );
-    Log::info($_request);
+    // xdebug_break();
+
+    $_request = json_decode($request->getContent());
+    // $_request = stripcslashes($_request);
+
+    $task = new Task;
+    $task->title = $_request->title;
+    $task->body = $_request->body;
+    $task->save();
+
+    return $task;
+    // Log::info($_request);
   }
 
 }
