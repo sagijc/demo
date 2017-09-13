@@ -43,7 +43,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'rii-dev.cv4vyeny8kpp.us-west-2.rds.amazonaws.com'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'db00'),
+            'database' => env('DB_DATABASE', 'db01'),
             'username' => env('DB_USERNAME', 'riiadmin'),
             'password' => env('DB_PASSWORD', 'riiadmin'),
             'unix_socket' => env('DB_SOCKET', ''),
