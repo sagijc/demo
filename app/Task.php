@@ -8,7 +8,7 @@ use Brexis\LaravelWorkflow\Traits\WorkflowTrait;
 class Task extends Model
 {
     use WorkflowTrait;
-    protected $attributes = ['body'=>null, 'completed'=>null ];
+    protected $attributes = ['body'=>null, 'completed'=>false ];
 
     protected $casts = [
         'workflowState' => 'array'
@@ -19,24 +19,13 @@ class Task extends Model
       return $query->where('completed',0);
     }
 
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function addComment( $body )
-    {
-        // $comment = Comment::create([
-        //     'body' => $body,
-        //     'task_id' => $this->id
-        // ]);
-
-        $this->comments()->create(compact('body'));
-        // return $comment;
-    }
+    // public function comments()
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
+    //
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 }
